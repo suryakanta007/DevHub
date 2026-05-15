@@ -19,15 +19,6 @@ const start = async () => {
   }
 };
 
-// ── Graceful shutdown ──────────────────────────────────────────────────────────
-process.on("SIGTERM", () => {
-  console.log("SIGTERM received — shutting down gracefully");
-  server.close(() => process.exit(0));
-});
 
-process.on("unhandledRejection", (err) => {
-  console.error("Unhandled rejection:", err.message);
-  server.close(() => process.exit(1));
-});
 
 start();
