@@ -22,12 +22,11 @@ const blogSchema = new mongoose.Schema(
 );
 
 // ── Auto-compute readTime before save ─────────────────────────────────────────
-blogSchema.pre("save", function (next) {
+blogSchema.pre("save", function () {
   if (this.isModified("content") && this.content) {
     const wordCount = this.content.split(" ").length;
     this.readTime = Math.ceil(wordCount / 200);
   }
-  next();
 });
 
 // ── Text search index ──────────────────────────────────────────────────────────
