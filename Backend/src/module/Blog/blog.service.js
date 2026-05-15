@@ -86,7 +86,7 @@ export const toggleLike = async (blogId, userId) => {
     ? { $pull: { likes: userId } }
     : { $addToSet: { likes: userId } };
 
-  const updated = await Blog.findByIdAndUpdate(blogId, update, { new: true });
+  const updated = await Blog.findByIdAndUpdate(blogId, update, { returnDocument: "after" });
   return { liked: !alreadyLiked, count: updated.likes.length };
 };
 

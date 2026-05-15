@@ -43,7 +43,7 @@ export const getProject = async (id) => {
   const project = await Project.findByIdAndUpdate(
     id,
     { $inc: { views: 1 } },
-    { new: true }
+    { returnDocument: "after" }
   ).populate("createdBy", "username fullName avatar");
 
   if (!project) throw ApiError.notFound("Project not found");
@@ -85,7 +85,7 @@ export const toggleLike = async (projectId, userId) => {
     ? { $pull: { likes: userId } }
     : { $addToSet: { likes: userId } };
 
-  const updated = await Project.findByIdAndUpdate(projectId, update, { new: true });
+  const updated = await Project.findByIdAndUpdate(projectId, update, { returnDocument: "after" });
   return { liked: !alreadyLiked, count: updated.likes.length };
 };
 
