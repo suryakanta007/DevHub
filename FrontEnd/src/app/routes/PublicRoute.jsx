@@ -12,8 +12,9 @@ const PublicRoute = () => {
     );
   }
   if (!isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="/auth/login" />;
   }
+  
   return (
     <div>
       <Outlet/>

@@ -8,6 +8,8 @@ import RegisterPage from "../../features/Auth/pages/RegisterPage";
 import InitialData from "../../utils/initialData";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
+import LandingPage from "../../shared/pages/LandingPage";
+import Profile from "../../features/profile/page/Profile";
 
 const AppRoute = () => {
   InitialData();
@@ -39,12 +41,15 @@ const AppRoute = () => {
       element: <PublicRoute />,
       children: [
         {
-          path: "/",
+          path: "",
           element: <MainLayout />,
           children: [
             {
               path: "",
-              element: <DashboardPage />,
+              element: <LandingPage />,
+            },{
+              path: "/profile",
+              element: <Profile />,
             },
           ],
         },
